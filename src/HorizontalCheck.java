@@ -1,14 +1,17 @@
 
 public class HorizontalCheck {
 
-    String messageToDisplay;
+    // Checa a existência de duplicidade nos valores das linhas
 
-    public HorizontalCheck (String objToPrint) {
-        messageToDisplay = objToPrint;
+
+
+    public HorizontalCheck (String objToPrint)
+    {
+
     }
 
     public void printMessage () {
-        System.out.println(messageToDisplay);
+
     }
 
 

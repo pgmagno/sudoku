@@ -40,7 +40,7 @@ public class Sudoku {
         //pegar um quadrante (nesse caso o do centro)
         for (int i = 3; i < 6; i++) {
             for(int j = 3; j < 6; j++) {
-               System.out.println(quadrantTL[i][j]);
+           //    System.out.println(quadrantTL[i][j]);
             }
         }
 
@@ -48,5 +48,8 @@ public class Sudoku {
       //  Scanner sc1 = new Scanner(System.in);
       //  int num1 = sc1.nextInt();
       //  System.out.println(num1);
+        int[] testArray = {1,2,3,4,5,6,7,9,9};
+        DuplicateCheck testCheck = new DuplicateCheck(testArray);
+        System.out.println(testCheck.dupCheck());
     }
 }
