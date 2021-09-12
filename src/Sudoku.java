@@ -1,38 +1,52 @@
-package com.example.sudoku;
+
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Sudoku {
 
 
-    static int[][] quadrantTL = {{9, 2, 2}, {4, 2, 6}, {7,  8, 9}};
+    static int[][] quadrantTL = {
+            {1,   2,   3,   4,   5,   6,   7,   8,   9},
+            {1,   2,   3,   4,   5,   6,   7,   8,   9},
+            {1,   2,   3,   4,   5,   6,   7,   8,   9},
+            {11,  22,  33,  44,  55,  66,  77,  88,  99},
+            {11,  22,  33,  41,  51,  61,  77,  88,  99},
+            {11,  22,  33,  42,  52,  62,  77,  88,  99},
+            {111, 222, 333, 444, 555, 666, 777, 888, 999},
+            {111, 222, 333, 444, 555, 666, 777, 888, 999},
+            {111, 222, 333, 444, 555, 666, 777, 888, 999}
+    };
 
     public static void main(String[] args) {
 
-        int intChecker;
-        int[] cleanList = new int[9];
-        int p = 0;
-        for (int i = 0; i < quadrantTL.length; i++) {
-            for (int j = 0; j < quadrantTL[0].length; j++) {
-                cleanList[p] = quadrantTL[i][j];
-                p++;
-
-            }
+        // pegar valores das colunas
+        for (int i = 3; i < 6; i++) {
+          //  System.out.print(quadrantTL[i][0] + " ");
         }
-        System.out.println(Arrays.toString(cleanList));
-
-        for(int k = 0; k < cleanList.length; k++) {
-            intChecker = cleanList[k];
-            p = 0;
-            for(int m = 0; m < cleanList.length; m++) {
-                if (intChecker == cleanList[m]) {
-                    p++;
-                }
-            }
-            if (p > 1) {
-                System.out.println(intChecker + " duplicado " + p + " vezes.");
-            }
-
+        // coluna inteira
+        for (int i = 0; i < 9; i++) {
+        //    System.out.print(quadrantTL[i][0] + " ");
         }
 
+        // pegar valores das linhas
+        for (int i = 6; i < 9; i++) {
+          //  System.out.print(quadrantTL[i][0] + " ");
+        }
+        //pegar o valor da linha inteira
+        for (int i = 0; i < 9; i++) {
+       //       System.out.print(quadrantTL[0][i] + " ");
+        }
+
+        //pegar um quadrante (nesse caso o do centro)
+        for (int i = 3; i < 6; i++) {
+            for(int j = 3; j < 6; j++) {
+               System.out.println(quadrantTL[i][j]);
+            }
+        }
+
+
+      //  Scanner sc1 = new Scanner(System.in);
+      //  int num1 = sc1.nextInt();
+      //  System.out.println(num1);
     }
 }
