@@ -6,6 +6,7 @@ public class DuplicateCheck {
     int[] intArray;
 
     public DuplicateCheck (int[] objIntArray) {
+
         intArray = objIntArray;
     }
 
@@ -26,6 +27,7 @@ public class DuplicateCheck {
             }
             if (p > 1) {
                 result = false;
+                break;
             } else {
                 result = true;
             }
