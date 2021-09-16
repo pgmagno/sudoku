@@ -1,5 +1,4 @@
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Sudoku {
@@ -29,7 +28,7 @@ public class Sudoku {
         PrintBoard formattedBoard = new PrintBoard(objMatrix12);
         formattedBoard.printFormattedBoard();
 
-        while (playerContinue.equals("Y")) {
+        while (!playerContinue.equals("N")) {
 
 
             System.out.print("Digite uma sequência de Linha-Coluna-Número: ");
@@ -39,6 +38,11 @@ public class Sudoku {
                 int row = Integer.parseInt(rowColNumArray[0]);
                 int col = Integer.parseInt(rowColNumArray[1]);
                 int num = Integer.parseInt(rowColNumArray[2]);
+
+                if (row < 1 || row > 9 || col < 1 || col > 9 || num < 1 || num > 9) {
+                    throw new Exception("Número Inválido");
+                }
+
                 objMatrix12[row - 1][col - 1] = num;
                 CheckGame newGame = new CheckGame(objMatrix12);
                 PrintBoard modifiedFormattedBoard = new PrintBoard(objMatrix12);
@@ -50,18 +54,12 @@ public class Sudoku {
             catch (Exception e) {
                 System.out.println("Digite uma sequência correta, não esqueça os traços. Exemplo: 1-2-3");
             }
-
-
-            //playerOption.nextLine();
-            System.out.println("Quer continuar?");
+            System.out.print("Quer continuar?");
             playerContinue = playerOption.nextLine();
             if (playerContinue.equals("N")) {
                 System.out.println("Thank you for playing.");
                 break;
             }
         }
-
-
-
     }
 }
