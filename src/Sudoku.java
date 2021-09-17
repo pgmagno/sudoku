@@ -1,4 +1,5 @@
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Sudoku {
@@ -14,6 +15,7 @@ public class Sudoku {
         String playerContinue = "Y";
         String rowColNum;
 
+        String[] convertedAnswer = {"N", "NO", "NAO"};
 
         int playerChoice;
 
@@ -31,6 +33,7 @@ public class Sudoku {
         PrintBoard formattedBoard = new PrintBoard(objMatrix);
         formattedBoard.printFormattedBoard();
 
+        gameLoop:
         while (!playerContinue.equals("N")) {
 
             CheckGame newGame = new CheckGame(objMatrix);
@@ -41,6 +44,14 @@ public class Sudoku {
                 try {
                     numOfExceptions = 0;
                     rowColNum = sc1.nextLine();
+                    playerContinue = rowColNum;
+                    if (playerContinue.equals("N")) {
+                        System.out.println("Obrigado por Jogar");
+                        break gameLoop;
+                    }
+                    if (playerContinue.equals("Problems")){
+                        newGame.problemLog();
+                    }
                     String[] rowColNumArray = rowColNum.split("-");
                     int row = Integer.parseInt(rowColNumArray[0]);
                     int col = Integer.parseInt(rowColNumArray[1]);
@@ -62,12 +73,17 @@ public class Sudoku {
             if (newGame.checkGame()) {
                 break;
             }
+            playerOption.nextLine(); //fazer o swallow do End of Line character
             System.out.print("Quer continuar? (S/N) ");
-            playerContinue = playerOption.nextLine();
-            if (playerContinue.equals("N")) {
-                System.out.println("Obrigado por jogar.");
-                break;
+            playerContinue = playerOption.nextLine().toUpperCase();
+
+            for (String t : convertedAnswer) {
+                if (playerContinue.equals(t)) {
+                    System.out.println("Obrigado por jogar.");
+                    break;
+                }
             }
+
         }
     }
 }

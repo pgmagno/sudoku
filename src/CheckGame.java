@@ -2,7 +2,7 @@ public class CheckGame {
 
 
     int[][] matrixToCheck;
-
+    String[] problems = new String[27];
     public CheckGame(int[][] objMatrix) {
         matrixToCheck = objMatrix;
     }
@@ -10,7 +10,7 @@ public class CheckGame {
     public boolean checkGame() {
 
         int ok = 0;
-        String[] problems = new String[27];
+
         boolean resultOfGame;
 
         int p = 0;
@@ -191,14 +191,20 @@ public class CheckGame {
             System.out.println("Game Over. Congratulations!");
             resultOfGame = true;
         } else {
-            System.out.print("Problemas: ");
-            for (String t : problems) {
-                if (t != null) {
-                    System.out.print(t + ", ");
-                }
-            }
             resultOfGame = false;
         }
         return resultOfGame;
     }
+
+    public void problemLog () {
+        System.out.print("Problemas: ");
+        for (String t : problems) {
+            if (t != null) {
+                System.out.print(t + ", ");
+            }
+        }
+        System.out.println();
+    }
+
+
 }
