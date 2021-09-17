@@ -191,10 +191,10 @@ public class CheckGame {
             System.out.println("Game Over. Congratulations!");
             resultOfGame = true;
         } else {
-            System.out.println("Problemas: ");
+            System.out.print("Problemas: ");
             for (String t : problems) {
                 if (t != null) {
-                    System.out.println(t);
+                    System.out.print(t + ", ");
                 }
             }
             resultOfGame = false;
