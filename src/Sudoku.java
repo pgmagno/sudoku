@@ -15,18 +15,36 @@ public class Sudoku {
         String playerContinue = "Y";
         String rowColNum;
 
-        String[] convertedAnswer = {"N", "NO", "NAO"};
+        String[] convertedExitAnswer = {"N", "NO", "NAO", "NÃO"};
+        String[] convertedProblemAnswer = {"PROBLEMS", "PROBLEMAS"};
 
-        int playerChoice;
 
-        System.out.println("Bem-Vindo ao SudoCU");
+        int playerDiff = 0;
+
+        System.out.println("################# SUDOKU #################");
+        System.out.println("Instruções: Escolha um nível de dificuldade e digite uma sequência de Linha-Coluna-Número.");
+        System.out.println("Exemplo: 1-2-3, em que 1 é o número da linha, 2 o da coluna e 3 o número a ser inserido");
+        System.out.println("A qualquer momento digite 'Problemas', para checar o tabuleiro, ou 'N' para sair");
+        System.out.println("Assim que o tabuleiro estiver solucionado, o jogo se encerrará!");
+        System.out.println("Boa Sorte!");
+        System.out.println();
+        System.out.println("---------------------- Novo Jogo ----------------------");
+        System.out.println();
         System.out.println("Escolha um nível de dificuldade (1: fácil, 2: intermediário e 3: difícil)");
 
-        playerChoice = playerOption.nextInt();
 
-        Boards board = new Boards(playerChoice);
+
+
+
+            try {
+                playerDiff = playerOption.nextInt();
+            } catch (Exception e) {
+                System.out.print("Entrada Inválida. ");
+            }
+
+
+        Boards board = new Boards(playerDiff);
         objMatrix = board.boardPicker();
-
 
         System.out.println("Começando o Jogo");
 
@@ -34,9 +52,10 @@ public class Sudoku {
         formattedBoard.printFormattedBoard();
 
         gameLoop:
-        while (!playerContinue.equals("N")) {
+        while (true) {
 
             CheckGame newGame = new CheckGame(objMatrix);
+            newGame.checkGame();
 
             System.out.print("Digite uma sequência de Linha-Coluna-Número: ");
             int numOfExceptions = 1;
@@ -45,13 +64,19 @@ public class Sudoku {
                     numOfExceptions = 0;
                     rowColNum = sc1.nextLine();
                     playerContinue = rowColNum;
-                    if (playerContinue.equals("N")) {
-                        System.out.println("Obrigado por Jogar");
-                        break gameLoop;
+
+                    for (String t : convertedExitAnswer) {
+                        if (playerContinue.toUpperCase().equals(t)) {
+                            System.out.println("Obrigado por jogar.");
+                            break gameLoop;
+                        }
                     }
-                    if (playerContinue.equals("Problems")){
-                        newGame.problemLog();
+                    for (String t : convertedProblemAnswer) {
+                        if (playerContinue.toUpperCase().equals(t)) {
+                            newGame.problemLog();
+                        }
                     }
+
                     String[] rowColNumArray = rowColNum.split("-");
                     int row = Integer.parseInt(rowColNumArray[0]);
                     int col = Integer.parseInt(rowColNumArray[1]);
@@ -65,25 +90,14 @@ public class Sudoku {
 
                     PrintBoard modifiedFormattedBoard = new PrintBoard(objMatrix);
                     modifiedFormattedBoard.printFormattedBoard();
+                    if (newGame.checkGame()) {
+                        break gameLoop;
+                    }
                 } catch (Exception e) {
                     numOfExceptions++;
                     System.out.println("Digite uma sequência correta, não esqueça os traços. Exemplo: 1-2-3");
                 }
             }
-            if (newGame.checkGame()) {
-                break;
-            }
-            playerOption.nextLine(); //fazer o swallow do End of Line character
-            System.out.print("Quer continuar? (S/N) ");
-            playerContinue = playerOption.nextLine().toUpperCase();
-
-            for (String t : convertedAnswer) {
-                if (playerContinue.equals(t)) {
-                    System.out.println("Obrigado por jogar.");
-                    break;
-                }
-            }
-
         }
     }
 }

@@ -6,6 +6,8 @@ public class CheckGame {
     public CheckGame(int[][] objMatrix) {
         matrixToCheck = objMatrix;
     }
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public boolean checkGame() {
 
@@ -188,7 +190,7 @@ public class CheckGame {
 ////////////////////// verificando resultados e retornando //////////////////////////
 
         if (ok == 27) {
-            System.out.println("Game Over. Congratulations!");
+            System.out.println("Fim de Jogo. Parabéns!");
             resultOfGame = true;
         } else {
             resultOfGame = false;
@@ -197,10 +199,10 @@ public class CheckGame {
     }
 
     public void problemLog () {
-        System.out.print("Problemas: ");
+        System.out.println("Problemas: ");
         for (String t : problems) {
             if (t != null) {
-                System.out.print(t + ", ");
+                System.out.println(ANSI_RED + "* " + t + ANSI_RESET);
             }
         }
         System.out.println();

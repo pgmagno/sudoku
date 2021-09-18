@@ -21,7 +21,7 @@ public class DuplicateCheck {
             intChecker = k;
             p = 0;
             for(int m : intArray) {
-                if (intChecker == m) {
+                if (intChecker == m || intChecker == 0) {
                     p++;
                 }
             }

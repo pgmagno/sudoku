@@ -24,7 +24,7 @@ public class PrintBoard {
 
         String color = ANSI_BLACK;
 
-        System.out.println(ANSI_RED + "_____________________" + ANSI_RESET);
+        System.out.println(ANSI_BLUE + "_____________________" + ANSI_RESET);
 
         for (int i = 0; i < 9; i++) {
 
@@ -32,7 +32,7 @@ public class PrintBoard {
                 if (j == 2 || j == 5) {
                     System.out.print(formattedBoard[i][j] + ANSI_RED + " | " + ANSI_RESET);
                 } else {
-                    System.out.print(formattedBoard[i][j] + ANSI_GREEN +  " " + ANSI_RESET);
+                    System.out.print(formattedBoard[i][j] + " ");
                 }
             }
             System.out.println();
@@ -41,7 +41,7 @@ public class PrintBoard {
             }
 
         }
-        System.out.println(ANSI_RED + "---------------------" + ANSI_RESET);
+        System.out.println(ANSI_BLUE + "---------------------" + ANSI_RESET);
 
 
     }
